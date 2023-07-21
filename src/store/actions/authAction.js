@@ -19,7 +19,7 @@ export const userRegister = (data) => {
     };
     try {
       const response = await axios.post(
-        `${https://messenger-2-o.onrender.com}/api/messenger/user-register`,
+        `${https://messenger-2-o.onrender.com}/api/messenger/user-register}`,
         data,
         config
       );
