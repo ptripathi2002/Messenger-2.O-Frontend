@@ -16,7 +16,7 @@ export const userRegister = (data) => {
   return async (dispatch) => {
     const config = {
       headers: {
-        "Content-Type": "application/josn", // <-- Fix the typo here, it should be "application/json"
+        "Content-Type": "application/json", // <-- Fix the typo here, it should be "application/json"
       },
     };
     try {
