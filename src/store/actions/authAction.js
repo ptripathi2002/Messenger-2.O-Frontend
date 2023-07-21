@@ -9,7 +9,7 @@ import {
 
 // Create an instance of axios with the backend URL
 const axiosInstance = axios.create({
-  baseURL: "https://messenger-2-o-ues9.onrender.com/",
+  baseURL: "https://messenger-2-o.onrender.com",
 });
 
 export const userRegister = (data) => {
