@@ -8,7 +8,7 @@ import {
 } from "../types/authType";
 
 // Assume you have set an environment variable for the API base URL
-// const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || "";
+const API_BASE_URL = https://messenger-2-o.onrender.com || "";
 
 export const userRegister = (data) => {
   return async (dispatch) => {
@@ -19,7 +19,7 @@ export const userRegister = (data) => {
     };
     try {
       const response = await axios.post(
-        `${https://messenger-2-o.onrender.com}/api/messenger/user-register}`,
+        `${API_BASE_URL}/api/messenger/user-register`,
         data,
         config
       );
@@ -48,7 +48,7 @@ export const userRegister = (data) => {
 
 export const userLogout = () => async (dispatch) => {
   try {
-    const response = await axios.post(`${https://messenger-2-o.onrender.com}/api/messenger/user-logout`);
+    const response = await axios.post(`${API_BASE_URL}/api/messenger/user-logout`);
     if (response.data.success) {
       localStorage.removeItem("authToken");
       dispatch({
