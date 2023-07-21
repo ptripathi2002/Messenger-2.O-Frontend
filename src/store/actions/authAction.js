@@ -7,19 +7,21 @@ import {
   USER_LOGIN_FAIL,
 } from "../types/authType";
 
-// Assume you have set an environment variable for the API base URL
-const API_BASE_URL = "https://messenger-2-o.onrender.com";
+// Create an instance of axios with the backend URL
+const axiosInstance = axios.create({
+  baseURL: "https://messenger-2-o-ues9.onrender.com/",
+});
 
 export const userRegister = (data) => {
   return async (dispatch) => {
     const config = {
       headers: {
-        "Content-Type": "application/json", // Fixed a typo: "josn" -> "json"
+        "Content-Type": "application/josn", // <-- Fix the typo here, it should be "application/json"
       },
     };
     try {
-      const response = await axios.post(
-        `${API_BASE_URL}/api/messenger/user-register`,
+      const response = await axiosInstance.post(
+        "/api/messenger/user-register",
         data,
         config
       );
@@ -43,12 +45,42 @@ export const userRegister = (data) => {
   };
 };
 
-// The rest of the code remains unchanged
-// ...
+export const userLogin = (data) => {
+  return async (dispatch) => {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+
+    try {
+      const response = await axiosInstance.post(
+        "/api/messenger/user-login",
+        data,
+        config
+      );
+      localStorage.setItem("authToken", response.data.token);
+      dispatch({
+        type: USER_LOGIN_SUCCESS,
+        payload: {
+          successMessage: response.data.successMessage,
+          token: response.data.token,
+        },
+      });
+    } catch (error) {
+      dispatch({
+        type: USER_LOGIN_FAIL,
+        payload: {
+          error: error.response.data.error.errorMessage,
+        },
+      });
+    }
+  };
+};
 
 export const userLogout = () => async (dispatch) => {
   try {
-    const response = await axios.post(`${API_BASE_URL}/api/messenger/user-logout`);
+    const response = await axiosInstance.post("/api/messenger/user-logout");
     if (response.data.success) {
       localStorage.removeItem("authToken");
       dispatch({
