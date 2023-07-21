@@ -8,7 +8,7 @@ import {
 } from "../types/authType";
 
 // Assume you have set an environment variable for the API base URL
-const API_BASE_URL = https://messenger-2-o.onrender.com || "";
+const API_BASE_URL = "https://messenger-2-o.onrender.com";
 
 export const userRegister = (data) => {
   return async (dispatch) => {
